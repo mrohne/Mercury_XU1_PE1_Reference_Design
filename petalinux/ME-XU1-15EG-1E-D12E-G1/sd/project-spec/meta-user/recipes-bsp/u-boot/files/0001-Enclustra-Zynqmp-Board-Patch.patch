@@ -1,0 +1,80 @@
+From 1838e41170b12664e6f7eb02a3faa12518e32ca1 Mon Sep 17 00:00:00 2001
+From: Ole Rohne <o.m.rohne@fys.uio.no>
+Date: Tue, 25 Apr 2023 09:02:39 +0200
+Subject: [PATCH] Enclustra Zynqmp Board Patch
+
+---
+ board/xilinx/Kconfig         | 15 +++++++++++++++
+ board/xilinx/zynqmp/Makefile |  1 +
+ common/board_r.c             |  6 ++++++
+ include/init.h               |  2 ++
+ 4 files changed, 24 insertions(+)
+
+diff --git a/board/xilinx/Kconfig b/board/xilinx/Kconfig
+index 519042497d..cdb48d94c7 100644
+--- a/board/xilinx/Kconfig
++++ b/board/xilinx/Kconfig
+@@ -57,6 +57,21 @@ config BOOT_SCRIPT_OFFSET
+ 	help
+ 	   Specifies distro boot script offset in NAND/QSPI/NOR flash.
+ 
++config ENCLUSTRA_EEPROM_MAC
++	bool "Enable support for reading MAC address from EEPROM"
++	help
++	  Enables MAC address readout from EEPROM
++
++config ENCLUSTRA_NANDMUX
++	bool "QSPI NAND multiplexer"
++	help
++	  Enables MIO multiplexer for Enclustra ZX modules
++
++config ENCLUSTRA_QSPI_FLASHMAP
++	bool "QSPI Flash Map"
++	help
++	  Includes device specific QSPI flash maps in the U-Boot environment
++
+ config ZYNQ_MAC_IN_EEPROM
+ 	bool "Reading MAC address from EEPROM"
+ 	help
+diff --git a/board/xilinx/zynqmp/Makefile b/board/xilinx/zynqmp/Makefile
+index a914028753..49a72cb94c 100644
+--- a/board/xilinx/zynqmp/Makefile
++++ b/board/xilinx/zynqmp/Makefile
+@@ -4,6 +4,7 @@
+ # Michal Simek <michal.simek@xilinx.com>
+ 
+ obj-y	:= zynqmp.o
++obj-y	+= ../common/enclustra.o
+ 
+ ifneq ($(CONFIG_XILINX_PS_INIT_FILE),"")
+ PS_INIT_FILE := $(shell cd $(srctree); readlink -f $(CONFIG_XILINX_PS_INIT_FILE))
+diff --git a/common/board_r.c b/common/board_r.c
+index 31a59c585a..946ee00009 100644
+--- a/common/board_r.c
++++ b/common/board_r.c
+@@ -767,6 +767,12 @@ static init_fnc_t init_sequence_r[] = {
+ #ifdef CONFIG_BOARD_LATE_INIT
+ 	board_late_init,
+ #endif
++#ifdef CONFIG_ENCLUSTRA_QSPI_FLASHMAP
++	enclustra_board,
++#endif
++#ifdef CONFIG_ENCLUSTRA_EEPROM_MAC
++	enclustra_common,
++#endif
+ #if defined(CONFIG_SCSI) && !defined(CONFIG_DM_SCSI)
+ 	INIT_FUNC_WATCHDOG_RESET
+ 	initr_scsi,
+diff --git a/include/init.h b/include/init.h
+index f2cd46dead..10ab1501af 100644
+--- a/include/init.h
++++ b/include/init.h
+@@ -294,6 +294,8 @@ int board_early_init_f(void);
+ /* manipulate the U-Boot fdt before its relocation */
+ int board_fix_fdt(void *rw_fdt_blob);
+ int board_late_init(void);
++int enclustra_board(void);
++int enclustra_common(void);
+ int board_postclk_init(void); /* after clocks/timebase, before env/serial */
+ int board_early_init_r(void);
+ 
