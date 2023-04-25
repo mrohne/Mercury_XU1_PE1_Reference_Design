@@ -78,6 +78,13 @@ CONFIG_base-files=y
 # CONFIG_cpio-rmt is not set
 
 #
+# crda 
+#
+# CONFIG_crda is not set
+# CONFIG_crda-dbg is not set
+# CONFIG_crda-dev is not set
+
+#
 # dbus 
 #
 # CONFIG_dbus is not set
@@ -2279,6 +2286,7 @@ CONFIG_libdfx=y
 #
 # CONFIG_libudev is not set
 CONFIG_udev-extraconf=y
+# CONFIG_linux-xlnx-udev-rules is not set
 
 #
 # fbset 
@@ -4067,6 +4075,13 @@ CONFIG_u-boot-tools=y
 # CONFIG_packagegroup-petalinux-v4lutils-dev is not set
 
 #
+# packagegroup-petalinux-vitis-acceleration 
+#
+# CONFIG_packagegroup-petalinux-vitis-acceleration is not set
+# CONFIG_packagegroup-petalinux-vitis-acceleration-dbg is not set
+# CONFIG_packagegroup-petalinux-vitis-acceleration-dev is not set
+
+#
 # packagegroup-petalinux-weston 
 #
 # CONFIG_packagegroup-petalinux-weston is not set
@@ -4112,5 +4127,6 @@ CONFIG_phytool=y
 # PetaLinux RootFS Settings
 #
 CONFIG_ADD_EXTRA_USERS="root:root;petalinux::passwd-expire;"
+CONFIG_CREATE_NEW_GROUPS=""
 CONFIG_ADD_USERS_TO_GROUPS="petalinux:audio,video;"
 CONFIG_ADD_USERS_TO_SUDOERS="petalinux"
