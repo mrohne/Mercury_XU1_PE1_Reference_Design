@@ -125,7 +125,7 @@ CONFIG_system-zynqmp=y
 #
 # CONFIG_e2fsprogs is not set
 # CONFIG_e2fsprogs-dev is not set
-# CONFIG_e2fsprogs-mke2fs is not set
+CONFIG_e2fsprogs-mke2fs=y
 # CONFIG_e2fsprogs-dbg is not set
 # CONFIG_e2fsprogs-resize2fs is not set
 # CONFIG_e2fsprogs-tune2fs is not set
@@ -181,7 +181,7 @@ CONFIG_haveged=y
 #
 # i2c-tools 
 #
-CONFIG_i2c-tools=y
+# CONFIG_i2c-tools is not set
 # CONFIG_i2c-tools-dev is not set
 # CONFIG_i2c-tools-misc is not set
 # CONFIG_i2c-tools-dbg is not set
@@ -548,7 +548,7 @@ CONFIG_can-utils=y
 #
 # nfs-utils 
 #
-# CONFIG_nfs-utils is not set
+CONFIG_nfs-utils=y
 # CONFIG_nfs-utils-stats is not set
 # CONFIG_nfs-utils-dbg is not set
 # CONFIG_nfs-utils-dev is not set
@@ -560,7 +560,7 @@ CONFIG_can-utils=y
 # CONFIG_openssh is not set
 # CONFIG_openssh-ssh is not set
 # CONFIG_openssh-sftp is not set
-CONFIG_openssh-sftp-server=y
+# CONFIG_openssh-sftp-server is not set
 # CONFIG_openssh-keygen is not set
 # CONFIG_openssh-dbg is not set
 # CONFIG_openssh-dev is not set
@@ -746,7 +746,7 @@ CONFIG_openssh-sftp-server=y
 #
 # hdparm 
 #
-CONFIG_hdparm=y
+# CONFIG_hdparm is not set
 # CONFIG_hdparm-dev is not set
 # CONFIG_wiper is not set
 # CONFIG_hdparm-dbg is not set
@@ -1384,7 +1384,7 @@ CONFIG_run-postinsts=y
 #
 # libdfx 
 #
-# CONFIG_libdfx is not set
+CONFIG_libdfx=y
 # CONFIG_libdfx-dbg is not set
 # CONFIG_libdfx-dev is not set
 
@@ -2286,7 +2286,7 @@ CONFIG_run-postinsts=y
 #
 # CONFIG_libudev is not set
 CONFIG_udev-extraconf=y
-# CONFIG_linux-xlnx-udev-rules is not set
+CONFIG_linux-xlnx-udev-rules=y
 
 #
 # fbset 
@@ -3957,7 +3957,7 @@ CONFIG_u-boot-tools=y
 #
 # packagegroup-petalinux-display-debug 
 #
-CONFIG_packagegroup-petalinux-display-debug=y
+# CONFIG_packagegroup-petalinux-display-debug is not set
 # CONFIG_packagegroup-petalinux-display-debug-dbg is not set
 # CONFIG_packagegroup-petalinux-display-debug-dev is not set
 
@@ -4109,7 +4109,7 @@ CONFIG_imagefeature-ssh-server-dropbear=y
 # CONFIG_imagefeature-ssh-server-openssh is not set
 CONFIG_imagefeature-hwcodecs=y
 # CONFIG_imagefeature-package-management is not set
-CONFIG_imagefeature-debug-tweaks=y
+# CONFIG_imagefeature-debug-tweaks is not set
 # CONFIG_auto-login is not set
 CONFIG_Init-manager-systemd=y
 # CONFIG_Init-manager-sysvinit is not set
@@ -4118,15 +4118,12 @@ CONFIG_Init-manager-systemd=y
 # user packages 
 #
 # CONFIG_gpio-demo is not set
-CONFIG_iperf3=y
-CONFIG_memtester=y
 # CONFIG_peekpoke is not set
-CONFIG_phytool=y
 
 #
 # PetaLinux RootFS Settings
 #
-CONFIG_ADD_EXTRA_USERS="root:root;petalinux:petalinux;"
-CONFIG_CREATE_NEW_GROUPS=""
-CONFIG_ADD_USERS_TO_GROUPS=""
-CONFIG_ADD_USERS_TO_SUDOERS=""
+CONFIG_ADD_EXTRA_USERS="root:root;petalinux::passwd-expire;"
+CONFIG_CREATE_NEW_GROUPS="aie;"
+CONFIG_ADD_USERS_TO_GROUPS="petalinux:audio,video,aie;"
+CONFIG_ADD_USERS_TO_SUDOERS="petalinux"
