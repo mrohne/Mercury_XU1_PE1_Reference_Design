@@ -29,7 +29,7 @@
 
 # ----------------------------------------------------------------------------------------------------
 # Modify this variable to select your module
-if {![info exists module_name]} {set module_name ME-XU1-6CG-1E-D11E-G1}
+if {![info exists module_name]} {set module_name ME-XU1-15EG-2I-D12E}
 if {![info exists baseboard]}   {set baseboard PE1}
 if {![info exists vivado_dir]} {set vivado_dir [file join Vivado ${module_name}] }
 # ----------------------------------------------------------------------------------------------------

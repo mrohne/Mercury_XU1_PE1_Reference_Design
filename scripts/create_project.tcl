@@ -5,6 +5,8 @@
 # part, PS_DDR, project_name, vivado_dir
 # ########################################################################################
 
+set_param project.defaultIPCacheSetting "/opt/Xilinx/IPCache"
+
 if {[file exists [file join scripts settings.tcl]] } { source [file join scripts settings.tcl] }
 
 # Create project
